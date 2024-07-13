@@ -10,13 +10,26 @@ export default function App() {
   const handlePageChange=(e)=>{
     if(e.data){
       setPage(e.page);
+      localStorage.setItem('nowpage', JSON.stringify(e.page));
       setNewdata(e.data);
-      // console.log(newdata)
     }else{
       setPage(e);
-      // console.log(e);
+      localStorage.setItem('nowpage', JSON.stringify(e));
     }
   }
+
+  useEffect(()=>{
+    const tokens = JSON.parse(localStorage.getItem('login'));
+    const nowpages = JSON.parse(localStorage.getItem('nowpage'));
+    if(tokens){
+      setPage(nowpages);
+      console.log(page)
+    }else{
+      if(nowpages == 2){
+        setPage(nowpages);
+      }
+    }
+  },[]);
 
   let isPage=()=>{
     if(page == 0){

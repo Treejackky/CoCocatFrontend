@@ -14,6 +14,7 @@ export default function Register({ handleChange, handleData }) {
     const [newdata, setNewdata] = useState(null);
     
   const handleSubmit = (e) => {
+    
     handleChange(e);
   };
 
@@ -33,7 +34,8 @@ export default function Register({ handleChange, handleData }) {
             "data": data
           }
         
-        setNewdata(newdata)
+        setNewdata(newdata);
+        
       const response = await fetch("http://localhost:8700/register", {
         method: "POST",
         headers: {
@@ -48,7 +50,8 @@ export default function Register({ handleChange, handleData }) {
         setLoggedIn(true);
         setMessage("Register successful!");
         setError("");
-         console.log(result);
+        // localStorage.setItem('login', JSON.stringify(result.token));
+         handleSubmit(newdata);
       } else {
         setLoggedIn(false);
         setMessage("");
@@ -108,7 +111,7 @@ export default function Register({ handleChange, handleData }) {
         {error && <p style={{ color: "red" }}>{error}</p>}
         {message && <p style={{ color: "green" }}>{message}</p>}
         {loggedIn && <p>Welcome, you are logged in!</p>}
-        <button onClick={()=>{handleSubmit(newdata)}}> Login </button>
+        <button onClick={()=>{handleSubmit(0)}}> Login </button>
     </div>
   );
 }

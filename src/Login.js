@@ -7,6 +7,7 @@ export default function Login({ handleChange, handleData }) {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  // const [newdata, setNewdata] = useState(null);
 
   let i = 0;
 
@@ -16,6 +17,7 @@ export default function Login({ handleChange, handleData }) {
         // console.log(handleData);
         setEmail(handleData.email);
         setPassword(handleData.password);
+        console.log(handleData.password)
         i++;
       }    
     }  
@@ -40,7 +42,15 @@ export default function Login({ handleChange, handleData }) {
         setLoggedIn(true);
         setMessage("Login successful!");
         setError("");
-         console.log(result);
+        //  console.log(result);
+        // console.log(result)
+        const data = {
+          "page": 1,
+          "data": result
+        }
+        handleSubmit(data);
+        localStorage.setItem('login', JSON.stringify(result.token));
+
       } else {
         setLoggedIn(false);
         setMessage("");
@@ -57,6 +67,7 @@ export default function Login({ handleChange, handleData }) {
     handleChange(e);
   };
 
+ 
   return (
     <div>
       <h1>Login</h1>
@@ -84,9 +95,8 @@ export default function Login({ handleChange, handleData }) {
        {error && <p style={{ color: "red" }}>{error}</p>}
       {message && <p style={{ color: "green" }}>{message}</p>}
       {loggedIn && <p>Welcome, you are logged in!</p>}
-      <button onClick={()=>{handleSubmit(1)}}> Dashboard </button>
+      {/* <button onClick={()=>{handleSubmit(1)}}> Dashboard </button> */}
       <button onClick={()=>{handleSubmit(2)}}> Register </button>
-
     </div>
   );
 }
