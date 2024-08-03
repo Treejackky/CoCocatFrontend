@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Login from "./Login"
 import Dashboard from "./Dashboard";
 import Register from "./Register";
+import Detail from "./Detail";
+
 
 export default function App() {
   const [page, setPage] = useState(0);
@@ -12,6 +14,8 @@ export default function App() {
       setPage(e.page);
       localStorage.setItem('nowpage', JSON.stringify(e.page));
       setNewdata(e.data);
+      localStorage.setItem('data', JSON.stringify(e.data));
+      console.log(e.data)
     }else{
       setPage(e);
       localStorage.setItem('nowpage', JSON.stringify(e));
@@ -38,6 +42,8 @@ export default function App() {
       return <Dashboard  handleChange={(e) => handlePageChange(e)} handleData={(newdata)} />
     }else if(page == 2){
       return <Register  handleChange={(e) => handlePageChange(e)} handleData={(newdata)} />
+    }else if(page == 3){
+      return <Detail  handleChange={(e) => handlePageChange(e)} handleData={(newdata)} />
     }
   }
 
