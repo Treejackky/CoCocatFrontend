@@ -3,7 +3,7 @@ import Login from "./Login"
 import Dashboard from "./Dashboard";
 import Register from "./Register";
 import Detail from "./Detail";
-
+import History from "./History";
 
 export default function App() {
   const [page, setPage] = useState(0);
@@ -15,7 +15,10 @@ export default function App() {
       localStorage.setItem('nowpage', JSON.stringify(e.page));
       setNewdata(e.data);
       localStorage.setItem('data', JSON.stringify(e.data));
-      console.log(e.data)
+      // console.log(e.data)
+      if(e.time){
+        localStorage.setItem('time', JSON.stringify(e.time));
+      }
     }else{
       setPage(e);
       localStorage.setItem('nowpage', JSON.stringify(e));
@@ -44,6 +47,8 @@ export default function App() {
       return <Register  handleChange={(e) => handlePageChange(e)} handleData={(newdata)} />
     }else if(page == 3){
       return <Detail  handleChange={(e) => handlePageChange(e)} handleData={(newdata)} />
+    }else if(page == 4){
+      return <History  handleChange={(e) => handlePageChange(e)} handleData={(newdata)} />
     }
   }
 

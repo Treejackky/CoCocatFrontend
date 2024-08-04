@@ -82,6 +82,7 @@ export default function Dashboard({ handleChange, handleData }) {
       <h1>Dashboard</h1>
       <button onClick={() => print()}>Click</button>
       <button onClick={() => handleLogout(0)}>Logout</button>
+      <button onClick={() => handleSubmit(4)}>History</button>
 
       {/* filter */}
       <div className="Time">
@@ -131,7 +132,8 @@ export default function Dashboard({ handleChange, handleData }) {
               onClick={() => {
                 handleSubmit({
                   page: 3,
-                  data: newdata[index],
+                  data: filteredData[index],
+                  time: { startDate, endDate}
                 });
               }}
             >

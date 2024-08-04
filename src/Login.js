@@ -50,6 +50,7 @@ export default function Login({ handleChange, handleData }) {
         }
         handleSubmit(data);
         localStorage.setItem('login', JSON.stringify(result.token));
+        localStorage.setItem('email', JSON.stringify(result.email));
 
       } else {
         setLoggedIn(false);
